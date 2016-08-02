@@ -1,0 +1,66 @@
+目前简易的地图就是用一个文本文件来记录>.<
+
+
+```
+## startmap1.map
+
+     xxxxxxxx                        xxxxxxxx
+
+
+
+
+	    [                                o
+
+
+
+	                          dddd
+
+
+   xxxxxxxx                        xxxxxxxx
+
+
+
+
+	 3                                G
+
+
+
+    ((((                             <<<<
+
+#(:0	):1		*:2		+:3		,:4		-:5		.:6		/:7		0:8		1:9
+#2:10	3:11	4:12	5:13	6:14	7:15	8:16	9:17	::18	;:19
+#-------------------------------------------------------------------------
+#<:20	=:21	>:22	?:23	@:24	A:25	B:26	C:27	D:28	E:29
+#F:30	G:31	H:32	I:33	J:34	K:35	L:36	M:37	N:38	O:39
+#-------------------------------------------------------------------------
+#P:40	Q:41	R:42	S:43	T:44	U:45	V:46	W:47	X:48	Y:49
+#Z:50	[:51	\:52	]:53	^:54	_:55	`:56	a:57	b:58	c:59
+#-------------------------------------------------------------------------
+#d:60	e:61	f:62	g:63	h:64	i:65	j:66	k:67	l:68	m:69
+#n:70	o:71	p:72	q:73	r:74	s:75	t:76	u:77	v:78	w:79
+#-------------------------------------------------------------------------
+#x:80
+```
+
+获取地图宽度
+
+``` java
+private static int readMap(List list, String fileName) {
+		BufferedReader br = null;
+		int width = 0;
+		try {
+			br = new BufferedReader(new InputStreamReader(ResourceManager.class.getResourceAsStream("/map/" + fileName)));
+			String line = null;
+			while ((line = br.readLine()) != null) {
+
+				if (line.startsWith("#"))
+					continue;
+				list.add(line);
+				width = Math.max(width, line.length());
+			}
+			return width;
+		}
+		...
+	}
+```
+
